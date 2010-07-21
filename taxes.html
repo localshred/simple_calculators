@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>Calculate 2007 Taxes</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+	<script type="text/javascript" src="js/tax_calculator.js"></script>
+	<style type="text/css">
+		body {
+			font-size: 12px;
+		}
+		h2,h3,h4,p {
+			margin: 2px;
+			padding: 3px;
+		}
+		input[type="text"]
+		{
+			font-size: 20px;
+			padding: 4px;
+			width: 120px;
+			border: 1px solid #aaa;
+		}
+		th {
+			text-align: left;
+		}
+		th.title {
+			font-size: 15px;
+			color: #1a5c8a;
+		}
+	</style>
+</head>
+
+<body>
+	<h2>2007 Income Tax Calculator</h2>
+
+	<fieldset>
+		
+		<form method="post" onsubmit="return false;">
+			<h4></h4>
+			<table>
+			<tr>
+				<th colspan="2" class="title">Financial Input</th>
+			</tr>
+			<tr>
+				<th>Annual Income:</th>
+				<td>$<input type="text" name="pre_tax_income" value="68,000" id="pre-tax-income"/></td>
+			</tr>
+			<tr>
+				<th>Monthly Expenses:</th>
+				<td>$<input type="text" name="monthly_expenses" value="3,300" id="monthly-expenses"/> (without mortgage)</td>
+			</tr>
+			<tr>
+				<th>Monthly Mortgage:</th>
+				<td>$<input type="text" name="monthly_mortgage" value="2,120" id="monthly-mortgage"/></td>
+			</tr>
+			<tr>
+				<th>Calculate SS Tax?:</th>
+				<td>
+					<label><input type="radio" name="calculate_ss" value="yes" id="calculate-ss-yes" checked="checked" /> Yes</label><br />
+					<label><input type="radio" name="calculate_ss" value="no" id="calculate-ss-no"  /> No</label>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="border-bottom: 1px solid #000;">&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>
+					<input type="submit" name="submit" value="Calculate!" id="submit" onclick="calculateIncomeTax();" />&nbsp;&nbsp;
+					<input type="reset" name="reset" value="Reset" id="cancel" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+			<tr>
+				<th colspan="2" class="title">Tax Details</th>
+			</tr>
+			<tr>
+				<th>Base Tax:</th>
+				<td>$<input type="text" name="base_tax" value="0" id="base-tax" /></td>
+			</tr>
+			<tr>
+				<th>Added Rate</th>
+				<td>&nbsp;&nbsp;<input type="text" name="added_rate" value="0" id="added-rate" />%</td>
+			</tr>
+			<tr>
+				<th>Amount Over</th>
+				<td>$<input type="text" name="amount_over" value="0" id="amount-over" /></td>
+			</tr>
+			<tr>
+				<th>Social Security Taxable Amount</th>
+				<td>$<input type="text" name="ss_taxable_amount" value="0" id="ss-taxable-amount" /></td>
+			</tr>
+			<tr>
+				<th>Taxable Amount</th>
+				<td>$<input type="text" name="taxable_amount" value="0" id="taxable-amount" /></td>
+			</tr>
+			<tr>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+			<tr>
+				<th colspan="2" class="title">Post-Tax Amounts</th>
+			</tr>
+			<tr>
+				<th>Annual Income</th>
+				<td>$<input type="text" name="post_tax_income" value="0" id="post-tax-income" /></td>
+			</tr>
+			<tr>
+				<th>Monthly Income</th>
+				<td>$<input type="text" name="monthly_income" value="0" id="monthly-income" /></td>
+			</tr>
+			<tr>
+				<th>Bi-Monthly Income</th>
+				<td>$<input type="text" name="bi_monthly_income" value="0" id="bi-monthly-income" /></td>
+			</tr>
+			<tr>
+				<th>Surplus Dollars</th>
+				<td>$<input type="text" name="surplus_income" value="0" id="surplus-income" /></td>
+			</tr>
+
+		</form>		
+	</fieldset>
+
+</body>
+</html>
