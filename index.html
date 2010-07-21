@@ -1,0 +1,300 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>  
+		<title>Wage Calculator</title>
+
+		<base href="http://www.rand9.com">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta name="description" content="Professional Blog and Portfolio of BJ Neilsen">
+		<meta name="keywords" content="rails, ruby on rails, rubyonrails, php, mysql, blog, web technology, css, css 2.1, javascript, jquery">
+		<meta name="robots" content="#">
+		<meta name="author" content="BJ Neilsen">
+		<meta name="copyright" content="BJ Neilsen and rand9 Technologies, LLC, 2008-2009">
+		<meta name="language" content="en">
+		<meta name="verify-v1" content="JtV9G/A5+Br6PW1qjMXDrSHzEEG9okZYFsrJ2cJHeTc=">
+
+		<link rel="Shortcut Icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="/stylesheets/coming-soon.css" type="text/css" media="screen, projection">
+		<script type="text/javascript" src="/js/jquery.js"></script>
+		<script type="text/javascript">
+			function format(n)
+			{
+				return addCommas(n.toFixed(2));
+			}
+			
+			function addCommas(nStr)
+			{
+				nStr += '';
+				if (nStr.match(/,/))
+				{
+					nStr = nStr.replace(/,/i, '');
+				}
+				x = nStr.split('.');
+				x1 = x[0];
+				x2 = x.length > 1 ? '.' + x[1] : '';
+				var rgx = /(\d+)(\d{3})/;
+				while (rgx.test(x1)) {
+					x1 = x1.replace(rgx, '$1' + ',' + '$2');
+				}
+				return x1 + x2;
+			}
+			
+			$(document).ready(function(){
+				
+				$("#btn-calc").click(function(){
+					/*
+						8760 total hours / year
+						2920 sleeping
+						2088 working 8-5
+						5008 sleep/work
+					*/
+					
+					wg = $("#annual-wage").val();
+					if (wg.match(/^\d+(?:\.\d+)?$/) && wg > 0)
+					{
+						wg = parseFloat(wg);
+						$("#high-level-annual").html(format(wg));
+						$("#high-level-bi-annual").html(format(wg/2));
+						$("#high-level-quarter").html(format(wg/4));
+						$("#high-level-month").html(format(wg/12));
+						$("#high-level-bi-month").html(format(wg/12/2));
+						$("#high-level-week").html(format(wg/52));
+
+						autoHours =  8760;
+						$("#auto-day").html(format(wg/365));
+						$("#auto-hour").html(format(wg/autoHours));
+						$("#auto-minute").html(format(wg/autoHours/60));
+
+						salaryHours = 2088;
+						$("#salary-day").html(format(wg/(365-(2*52))));
+						$("#salary-hour").html(format(wg/salaryHours));
+						$("#salary-minute").html(format(wg/salaryHours/60));
+
+						$("#salary-reverse").html(format($("#auto-minute").html()*(salaryHours*60)));
+						$("#auto-reverse").html(format($("#salary-minute").html()*(autoHours*60)));
+					}
+					else
+					{
+						alert('Only numbers please! Thank you, come again.');
+					}
+				});
+
+				// $("a[id^='commentLink-']").click(function(){
+				// 	alert(this.id);
+				// 			    match = this.id.match(/commentLink-(\d+)/);
+				// 			    container = $("div#commentContainer-"+match[1])
+				// 			    container.toggle();
+				// 			    if (container.is(":visible")) {
+				// 			        container.load($(this).attr("href"));
+				// 			    } else {
+				// 			        container.html("Loading...");
+				// 			    }
+				// 			    return false; //Prevent default action
+				// });
+			});
+		</script>
+		<style type="text/css">
+			#calc p
+			{
+				margin: 0;
+				padding: 0;
+			}
+			#annual-wage
+			{
+				font-size: 20px;
+				padding: 5px;
+				border: 3px solid #666;
+			}
+			#annual-wage:active,
+			#annual-wage:focus
+			{
+				border-color: #BBBC50;
+			}
+			#btn-calc
+			{
+				font-size: 20px;
+			}
+			table#breakdown
+			{
+				border: 1px solid #333;
+				border-collapse: collapse;
+			}
+			table#breakdown th,
+			table#breakdown td
+			{
+				padding: 3px 5px;
+				border: 1px solid #ccc;
+				width: 30%;
+			}
+			table#breakdown th
+			{
+				text-align: left;
+				color: #fff;
+				background: #666;
+			}
+			table#breakdown thead th
+			{
+				border-bottom: 1px solid #333;
+			}
+			table#breakdown tbody th
+			{
+				border-right: 1px solid #333;
+			}
+			table#breakdown tbody td
+			{
+				text-align: center;
+			}
+			table#breakdown tbody td:before
+			{
+				content: "$ ";
+			}
+		</style>
+	</head> 
+
+	<body id="application-body">
+
+		<div id="wrapper">
+
+			<div id="header">
+				<h1 id="logo" title="rand9 technologies"><a href="/" title="Home">rand9 Technologies</a></h1>
+				<h4 id="tagline">{&nbsp;&nbsp;&nbsp;Coming Soon-ish&nbsp;&nbsp;&nbsp;}</h4>
+			</div>  
+
+			<div id="content" class="cf">
+				<div id="guts">
+
+					
+					<script type="text/javascript">
+
+						$(document).ready(function(){
+					    $("a[id^='commentLink-']").click(function() {
+					        match = this.id.match(/commentLink-(\d+)/);
+					        container = $("div#commentContainer-" + match[1])
+					        container.toggle();
+					        if (container.is(":visible")) {
+										alert('got here');
+										return false;
+				            container.load($(this).attr("href"));
+					        } else {
+				            container.html("Loading...");
+					        }
+					        return false; //Prevent default action
+					    });
+						});
+					</script>
+
+					   <div id="SystemNews">
+					           <ul id="dc_news">
+					                        <li>
+					                            <a href="/Home/SystemNews/69" id="commentLink-0">Comments</a>
+			                                <div id='commentContainer-0' style="display:none;">    Loading...</div>
+					                        </li>
+					           </ul> 
+					   </div>
+
+
+					<div id="calc">
+						<form onsubmit="return false;">
+							<p><label for="annual-wage">Enter the Annual Wage</label></p>
+							<p><input type="text" name="annual_wage" value="40400" id="annual-wage"> <input type="button" name="btn_calculate" value="Calculate!" id="btn-calc"></p>
+
+							<hr />
+
+							<table id="breakdown">
+								<thead>
+									<tr>
+										<th>&nbsp;</th>
+										<th>Salary</th>
+										<th>Entrepreneur</th>
+									</tr>
+								</thead>
+								<tfoot></tfoot>
+								<tbody>
+									<!--
+									<h3 style="border-bottom: 1px dotted #666;">High-level Wage Breakdown</h3>
+									<p><span style="font-weight: bold;">Annually:</span>			$<span id="high-level-annual">0.00</span></p>
+									<p><span style="font-weight: bold;">Bi-Annually:</span>		$<span id="high-level-bi-annual">0.00</span></p>
+									<p><span style="font-weight: bold;">Quarterly:</span>			$<span id="high-level-quarter">0.00</span></p>
+									<p><span style="font-weight: bold;">Monthly:</span>				$<span id="high-level-month">0.00</span></p>
+									<p><span style="font-weight: bold;">Bi-Monthly:</span>		$<span id="high-level-bi-month">0.00</span></p>
+									<p><span style="font-weight: bold;">Weekly:</span>				$<span id="high-level-week">0.00</span></p>
+									 -->
+									<tr>
+										<th>Annually</th>
+										<td colspan="2" id="high-level-annual">0.00</td>
+									</tr>
+									<tr>
+										<th>Bi-Annually</th>
+										<td colspan="2" id="high-level-bi-annual">0.00</td>
+									</tr>
+									<tr>
+										<th>Quarterly</th>
+										<td colspan="2" id="high-level-quarter">0.00</td>
+									</tr>
+									<tr>
+										<th>Monthly</th>
+										<td colspan="2" id="high-level-month">0.00</td>
+									</tr>
+									<tr>
+										<th>Bi-Monthly</th>
+										<td colspan="2" id="high-level-bi-month">0.00</td>
+									</tr>
+									<tr>
+										<th>Weekly</th>
+										<td colspan="2" id="high-level-week">0.00</td>
+									</tr>
+
+<!--
+									<h3 style="border-bottom: 1px dotted #666;">Entrepreneur's Granular Wage Breakdown</h3>
+									<p><span style="font-weight: bold;">Daily:</span>					$<span id="auto-day">0.00</span></p>
+									<p><span style="font-weight: bold;">Hourly:</span>				$<span id="auto-hour">0.00</span></p>
+									<p><span style="font-weight: bold;">Per Minute:</span>		$<span id="auto-minute">0.00</span></p>
+
+									<h3 style="border-bottom: 1px dotted #666;">Salary Worker's Granular Wage Breakdown</h3>
+									<p><span style="font-weight: bold;">Daily:</span>					$<span id="salary-day">0.00</span></p>
+									<p><span style="font-weight: bold;">Hourly:</span>				$<span id="salary-hour">0.00</span></p>
+									<p><span style="font-weight: bold;">Per Minute:</span>		$<span id="salary-minute">0.00</span></p>
+-->
+
+									<tr>
+										<th>Daily</th>
+										<td id="salary-day">0.00</td>
+										<td id="auto-day">0.00</td>
+									</tr>
+									<tr>
+										<th>Hourly</th>
+										<td id="salary-hour">0.00</td>
+										<td id="auto-hour">0.00</td>
+									</tr>
+									<tr>
+										<th>Per-Minute</th>
+										<td id="salary-minute">0.00</td>
+										<td id="auto-minute">0.00</td>
+									</tr>
+									<tr>
+										<th>Reversed Wage*</th>
+										<td id="salary-reverse">0.00</td>
+										<td id="auto-reverse">0.00</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<p>* Annual salary based on the other person's per-minute wage.</p>
+
+						</form>
+					</div>
+
+				</div>  
+			</div>  
+
+			<div id="footer">
+				<p id="copyright">&copy; 2008-2009 rand9 Technologies, LLC</p> 
+				<p>     
+					<a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01 Strict" height="31" width="88"></a>
+					<a href="http://jigsaw.w3.org/css-validator/"><img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!"></a>
+				</p>    
+			</div>  
+		</div>
+		
+	</body>
+</html>
